@@ -209,7 +209,7 @@ int main(void)
     while (should_run)
     {
         status = 1;
-        printf("osh>");
+        printf("ssh>");
         fflush(stdout);
         readCommandFromUser(command);
 
@@ -260,7 +260,7 @@ int main(void)
                 if(args_num > 2 && pipePos!= -1)
                 {
                     exePipeProcess(args, args_num, pipePos);
-                    exit(2);
+                    exit(EXIT_SUCCESS);
                 }
                 //
                 if (execvp(args[0], args) == -1) // not equal 1 execvp will run its command to print res
@@ -269,33 +269,14 @@ int main(void)
                     exit(2);
                 }
             }
-            else // pid>0 : parent process
-            {
-                // if (wait == 0)
-                // {
-                //     waitpid(pid, &status, 0);
-                //     break;
-                // }
-                // if (wait == 1)
-                // {
-                //     waitpid(pid, &status, WUNTRACED);
-                //     if (WIFEXITED(status))
-                //     {
-                //         printf("children b<%d> exited with status =%d.\n", pid, status);
-                //     }
-                //     break;
-                // }
-
-                // {$
-                //     continue;
-                // }
-                // waitpid(pid, NULL, 0);
+            else {
                 if (status == 0) //
                 {
                     continue;
                 }
                 waitpid(pid, NULL, 0);
             }
+            
         }
     }
 
