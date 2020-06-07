@@ -202,14 +202,14 @@ int main(void)
 
     int should_run = 1;
     pid_t pid;
-    int status;
+    int status = 1;
     int argv = 0;
     int args_num;
-    
+
     while (should_run)
     {
+        if (status) printf("ssh>>");
         status = 1;
-        printf("ssh>");
         fflush(stdout);
         readCommandFromUser(command);
 
